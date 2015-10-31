@@ -2,7 +2,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
 .controller('GeneralCtrl', function($scope) {})
 
-.controller('DonateCtrl', function($scope, Chats) {
+.controller('DonateCtrl', function($scope, $state) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -10,11 +10,11 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  $scope.data = {};
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+  $scope.items = function() {
+        $state.go('items');
+    }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -65,5 +65,9 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     $scope.signup = function() {
         $state.go('tab.general');
     }
+})
+
+.controller('ItemsCtrl', function($scope, $ionicPopup, $state) {
+    $scope.data = {};
 })
 
