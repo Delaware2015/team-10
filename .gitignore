@@ -1,6 +1,7 @@
 
 backend/.idea/
 backend/*.iml
+backend/target
 
 
 .DS_Store
