@@ -31,6 +31,12 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   };
 })
 
+.controller('SearchCtrl', function($scope) {
+  $scope.settings = {
+    enableFriends: true
+  };
+})
+
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, ngFB) {
     $scope.data = {};
  
