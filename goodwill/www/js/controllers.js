@@ -41,6 +41,10 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
         });
     }
 
+    $scope.signup = function() {
+        $state.go('signup');
+    }
+
     $scope.fbLogin = function () {
     ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
         function (response) {
@@ -53,5 +57,9 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
             }
         });
     }
+})
+
+.controller('SignUpCtrl', function($scope, $ionicPopup, $state) {
+    $scope.data = {};
 })
 
