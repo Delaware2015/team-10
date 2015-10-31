@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+  <style>
+ #map {
+   width: 500px;
+   height: 400px;
+   background-color: #CCC;
+   }
+   </style>
+   
+   <script src="http://maps.googleapis.com/maps/api/js"></script>
+   <script> 
+   	function initializine(){
+		var mapCanvas = document.getElementById('map');
+		var mapOptions = {
+			center: new google.maps.LatLng(39.756423, -75.518203),
+			zoom: 15
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+		var map = new google.maps.Map(mapCanvas, mapOptions);
+		}
+		google.maps.event.addDOMListener(window, 'load', initialize);
+	</script>
+ 
+ </head>
+
+
+<body>
+	<h1 style="color:blue"><b>My Store Location </b></h1><br>
+	
+		<div id="map"></div><br>
+
+<button onclick="myFunction()">SHOP</button><br><br>
+<button onclick="myFunciton()">DONATE</button><br>
+
+   <script> 
+   	function myFunction(){
+		var btn = document.createElement("BUTTON");
+	}
+	</script>
+
+
+
+	<p></p>
+	<p></p>
+	<p></p>
+
+</body>
+</html>
+
+
+
+
+
