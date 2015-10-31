@@ -27,7 +27,7 @@ angular.module('starter.services', [])
 .factory('DonorFactory', function($http, $q){
     var service = {};
     var baseUrl = 'http://localhost:8080/';
-  
+    var donor = {};
     var email = '';
     var zipcode = '';
     var password = '';
@@ -48,12 +48,24 @@ angular.module('starter.services', [])
         sName = _sName;}
 
     
-    service.setSid = function(_sid){
-        sid = _sid;
+    service.getEmail = function(){
+        return email;
     }
 
-    service.getSid = function(){
-        return sid;
+    service.getZipcode = function(){
+        return zipcode;
+    }
+
+    service.getPassword = function(){
+        return password;
+    }
+
+    service.getName = function(){
+        return name;
+    }
+
+    service.getId = function(){
+        return id;
     }
 
     service.createDonor = function(_email, _zipcode, _password){
@@ -62,13 +74,21 @@ angular.module('starter.services', [])
         $http.get(createUrl)
         .then(function successCallback(response){
             deferred.resolve(response);
+            donor = angular.fromJson(response.data);
+            console.log(donor);
+            email = donor.email;
+            zipcode = donor.zipcode;
+            password = donor.password;
+            name = donor.name;
+            id = donor.id;
+
         })
         return deferred.promise;
     }
 
     return service;
 
-});
+})
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
