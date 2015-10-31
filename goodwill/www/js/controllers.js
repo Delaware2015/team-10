@@ -44,7 +44,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   };
 })
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, ngFB) {
     $scope.data = {};
  
     $scope.login = function() {
@@ -68,7 +68,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
             if (response.status === 'connected') {
                 $state.go('tab.general');
                 console.log('Facebook login succeeded');
-                $scope.closeLogin();
+                // $scope.closeLogin();
             } else {
                 alert('Facebook login failed');
             }
@@ -99,10 +99,25 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     });
 })
 
-.controller('CompleteCtrl', function($scope, $ionicPopup, $state) {
+.controller('CompleteCtrl', function($scope, $ionicPopup, $state, ngFB) {
     $scope.data = {};
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-    viewData.enableBack = true;
-  });
-})
+      viewData.enableBack = true;
+    });
+    $scope.share = function (event) {
+    ngFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "I just donated $31 to Goodwill in Newark, DE!"
+        }
+    }).then(
+        function () {
+            alert('The session was shared on Facebook');
+        },
+        function () {
+            alert('An error occurred while sharing this session on Facebook');
+        });
+    }
+  })
 
