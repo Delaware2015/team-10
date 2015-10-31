@@ -35,24 +35,25 @@ public class HelloController {
 
     @RequestMapping("/create")
     @ResponseBody
-    public String create(String email, String zipcode, String password, String name) {
+    public Donor create(String email, String zipcode, String password) {
         Donor donor = null;
 
         try {
-            donor = new Donor(email, zipcode, password, name);
+            donor = new Donor(email, zipcode, password);
             donorRepository.save(donor);
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error creating donor: " + e.toString();
+//            return "Error creating donor: " + e.toString();
+            System.out.println(e.toString());
         }
 
-        return "Student successfully created:<br/> (id: " + donor.getId() + ":"+ donor.getEmail() + ":"+ donor.getPassword() + ":"+ donor.getName();
+        return donor;
     }
 
 
     @RequestMapping("/read")
     @ResponseBody
-    public String read(String email) {
+    public Donor read(String email) {
         String result;
         Donor donor = null;
 
@@ -62,9 +63,9 @@ public class HelloController {
             result = "test: " + donor.getEmail();
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error creating donor: " + e.toString();
+            System.out.println(e.toString());
         }
 
-        return "Donor found:<br/> (id: " + donor.getId() + ":"+ donor.getEmail() + ":"+ donor.getPassword() + ":"+ donor.getName() + ")";
+        return donor;
     }
 }

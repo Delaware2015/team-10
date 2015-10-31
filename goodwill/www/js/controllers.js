@@ -1,6 +1,13 @@
 angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
-.controller('GeneralCtrl', function($scope) {})
+.controller('GeneralCtrl', function($scope, DonorFactory) {
+  $scope.data = {};
+          $scope.data.email = DonorFactory.getEmail();
+          $scope.data.zipcode = DonorFactory.getZipcode();
+          $scope.data.password = DonorFactory.getPassword();
+          $scope.data.name = DonorFactory.getName();
+          $scope.data.id = DonorFactory.getId();
+})
 
 .controller('DonateCtrl', function($scope, $state) {
   // With the new view caching in Ionic, Controllers are only called
@@ -32,7 +39,9 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 })
 
 .controller('SearchCtrl', function($scope) {
-  
+  $scope.settings = {
+    enableFriends: true
+  };
 })
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, ngFB) {
@@ -59,7 +68,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
             if (response.status === 'connected') {
                 $state.go('tab.general');
                 console.log('Facebook login succeeded');
-                $scope.closeLogin();
+                // $scope.closeLogin();
             } else {
                 alert('Facebook login failed');
             }
@@ -67,11 +76,19 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     }
 })
 
-.controller('SignUpCtrl', function($scope, $ionicPopup, $state) {
+.controller('SignUpCtrl', function($scope, $ionicPopup, $state, DonorFactory) {
     $scope.data = {};
 
     $scope.signup = function() {
-        $state.go('tab.general');
+        DonorFactory.createDonor($scope.data.email, $scope.data.zip, $scope.data.pass)
+        .then(function(data){
+          $scope.data.response = data;
+
+          // console.log($scope.data.response.data);
+          $state.go('tab.general');
+        })
+         
+        
     }
 })
 
@@ -85,7 +102,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 .controller('CompleteCtrl', function($scope, $ionicPopup, $state, ngFB) {
     $scope.data = {};
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-    viewData.enableBack = true;
+      viewData.enableBack = true;
     });
     $scope.share = function (event) {
     ngFB.api({
@@ -101,6 +118,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
         function () {
             alert('An error occurred while sharing this session on Facebook');
         });
-};
-})
+    }
+  })
 

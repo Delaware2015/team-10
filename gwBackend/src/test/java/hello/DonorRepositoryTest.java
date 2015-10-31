@@ -28,13 +28,13 @@ public class DonorRepositoryTest {
 
     @Test
     public void testReadDonor(){
-        Donor donor = new Donor();
-        donor.setEmail("Spring Framework Guru Shirt");
-        donor.setZipcode("19713");
-        donor.setPassword("password");
-        donorRepository.save(donor);
-        Donor result = donorRepository.findOne(1L);
-        System.out.println("id: " + result.getEmail());
+//        Donor donor = new Donor();
+//        donor.setEmail("ffeafff");
+//        donor.setZipcode("19713");
+//        donor.setPassword("password");
+//        donorRepository.save(donor);
+//        Donor result = donorRepository.findOne(1L);
+//        System.out.println("id: " + result.getEmail());
 //        Iterable<Donor> result = donorRepository.findAll();
 //        while (result.iterator().hasNext()) {
 //            System.out.println("zip code: " + result.iterator().next().getZipcode());
@@ -43,17 +43,17 @@ public class DonorRepositoryTest {
     @Test
     public void testSaveDonor(){
         //setup donor
-        Donor donor = new Donor();
-        donor.setEmail("Spring Framework Guru Shirt");
-        donor.setZipcode("19713");
-        donor.setPassword("password");
-        //donor.setId(Integer.toUnsignedLong(1));
-
-
-        //save donor, verify has ID value after save
-        //assertNotNull(donor.getId()); //null before save
-        donorRepository.save(donor);
-        assertNotNull(donor.getId()); //not null after save
+//        Donor donor = new Donor();
+//        donor.setEmail("efeaf");
+//        donor.setZipcode("19713");
+//        donor.setPassword("password");
+//        //donor.setId(Integer.toUnsignedLong(1));
+//
+//
+//        //save donor, verify has ID value after save
+//        //assertNotNull(donor.getId()); //null before save
+//        donorRepository.save(donor);
+//        assertNotNull(donor.getId()); //not null after save
 
         //fetch from DB
 //        Donor fetchedDonor = donorRepository.findOne(donor.getId());
