@@ -1,8 +1,8 @@
 angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
-.controller('DashCtrl', function($scope) {})
+.controller('GeneralCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('DonateCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -21,7 +21,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('ShopCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
@@ -32,7 +32,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
  
     $scope.login = function() {
         LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
-            $state.go('tab.dash');
+            $state.go('tab.general');
         }).error(function(data) {
             var alertPopup = $ionicPopup.alert({
                 title: 'Login failed!',
@@ -49,7 +49,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
         function (response) {
             if (response.status === 'connected') {
-                $state.go('tab.dash');
+                $state.go('tab.general');
                 console.log('Facebook login succeeded');
                 $scope.closeLogin();
             } else {
@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     $scope.data = {};
 
     $scope.signup = function() {
-        $state.go('tab.dash');
+        $state.go('tab.general');
     }
 })
 
