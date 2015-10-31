@@ -32,9 +32,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 })
 
 .controller('SearchCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+  
 })
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, ngFB) {
@@ -84,10 +82,25 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     });
 })
 
-.controller('CompleteCtrl', function($scope, $ionicPopup, $state) {
+.controller('CompleteCtrl', function($scope, $ionicPopup, $state, ngFB) {
     $scope.data = {};
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
     });
+    $scope.share = function (event) {
+    ngFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "I just donated $31 to Goodwill in Newark, DE!"
+        }
+    }).then(
+        function () {
+            alert('The session was shared on Facebook');
+        },
+        function () {
+            alert('An error occurred while sharing this session on Facebook');
+        });
+};
 })
 
