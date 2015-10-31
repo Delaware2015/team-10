@@ -24,6 +24,52 @@ angular.module('starter.services', [])
     }
 })
 
+.factory('DonorFactory', function($http, $q){
+    var service = {};
+    var baseUrl = 'http://localhost:8080/';
+  
+    var email = '';
+    var zipcode = '';
+    var password = '';
+    var name = '';
+    var id;
+    var createUrl = '';
+    var readUrl = '';
+    var data = {};
+    var sid = 0;
+
+    var makeCreateUrl = function (_email, _zipcode, _password){
+        
+        createUrl = baseUrl + 'create?email=' + _email + '&zipcode=' + _zipcode + '&password=' + _password;
+        return createUrl;
+    }
+
+    service.setName = function(_sName){
+        sName = _sName;}
+
+    
+    service.setSid = function(_sid){
+        sid = _sid;
+    }
+
+    service.getSid = function(){
+        return sid;
+    }
+
+    service.createDonor = function(_email, _zipcode, _password){
+        makeCreateUrl(_email, _zipcode, _password);
+        var deferred = $q.defer();
+        $http.get(createUrl)
+        .then(function successCallback(response){
+            deferred.resolve(response);
+        })
+        return deferred.promise;
+    }
+
+    return service;
+
+});
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

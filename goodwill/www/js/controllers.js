@@ -37,7 +37,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   };
 })
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, ngFB) {
+.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, ngFB, DonorFactory) {
     $scope.data = {};
  
     $scope.login = function() {
@@ -69,11 +69,13 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     }
 })
 
-.controller('SignUpCtrl', function($scope, $ionicPopup, $state) {
+.controller('SignUpCtrl', function($scope, $ionicPopup, $state, DonorFactory) {
     $scope.data = {};
 
     $scope.signup = function() {
-        $state.go('tab.general');
+        $scope.data.donor = DonorFactory.createDonor($scope.data.email, $scope.data.zip, $scope.data.pass);
+        // $state.go('tab.general');
+        console.log($scope.data.donor);
     }
 })
 
