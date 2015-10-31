@@ -69,5 +69,8 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
 .controller('ItemsCtrl', function($scope, $ionicPopup, $state) {
     $scope.data = {};
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+});
 })
 
