@@ -1,8 +1,8 @@
 
-backend/.idea/
-backend/*.iml
+gwBackend/.idea/
+gwBackend/*.iml
+gwBackend/target
 backend/target
-
 
 .DS_Store
 # Mobile Tools for Java (J2ME)
