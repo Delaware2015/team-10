@@ -27,7 +27,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   };
 })
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, ngFB) {
     $scope.data = {};
  
     $scope.login = function() {
@@ -40,18 +40,18 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
             });
         });
     }
-})
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, ngFB) {
     $scope.fbLogin = function () {
     ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
         function (response) {
             if (response.status === 'connected') {
+                $state.go('tab.dash');
                 console.log('Facebook login succeeded');
                 $scope.closeLogin();
             } else {
                 alert('Facebook login failed');
             }
         });
-    };
-});
+    }
+})
+
