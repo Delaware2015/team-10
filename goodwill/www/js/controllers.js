@@ -15,6 +15,10 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   $scope.items = function() {
         $state.go('items');
     }
+
+    $scope.complete = function() {
+        $state.go('complete');
+    }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -71,6 +75,10 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     $scope.data = {};
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
-});
+    });
+})
+
+.controller('CompleteCtrl', function($scope, $ionicPopup, $state) {
+    $scope.data = {};
 })
 
