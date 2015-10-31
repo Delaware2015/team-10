@@ -61,5 +61,9 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
 .controller('SignUpCtrl', function($scope, $ionicPopup, $state) {
     $scope.data = {};
+
+    $scope.signup = function() {
+        $state.go('tab.dash');
+    }
 })
 
